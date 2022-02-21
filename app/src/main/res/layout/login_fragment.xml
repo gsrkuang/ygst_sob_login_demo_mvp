@@ -53,6 +53,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
+            android:id="@+id/btn_wechat"
             android:background="@drawable/wechat" />
 
         <TextView

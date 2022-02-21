@@ -1,6 +1,8 @@
 package com.colin.presenter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,6 +12,7 @@ import com.colin.bean.UserBean;
 import com.colin.model.ServerApi;
 import com.colin.request.RequestInterceptor;
 import com.colin.ui.activity.LoginActivity;
+import com.colin.ui.activity.MainActivity;
 import com.colin.util.Constants;
 import com.colin.util.MD5Util;
 import com.colin.view.IUserLoginView;
@@ -29,10 +32,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class UserLoginPresenter {
     private IUserLoginView userLoginView;
-    private Context mContext;
+    private Activity mContext;
     private Handler mHandler = new Handler();
 
-    public UserLoginPresenter(Context mContext ,IUserLoginView userLoginView)
+    public UserLoginPresenter(Activity mContext ,IUserLoginView userLoginView)
     {
         this.mContext = mContext;
         this.userLoginView = userLoginView;
@@ -69,12 +72,17 @@ public class UserLoginPresenter {
                 //Response<LoginBean> responseBody  = call.execute();
                 LoginBean loginBean = response.body();
                 if (loginBean != null || "".equals(loginBean)){
-
-                Toast.makeText(mContext,loginBean.toString(),Toast.LENGTH_SHORT).show();
+                    showTips(loginBean);
+                }
+                if (loginBean.isSuccess()){
+                    //从DengluActivity切换到MianShiActivity 直接跳
+                    Intent intent = new Intent();
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setClass(mContext, MainActivity.class);
+                    mContext.startActivity(intent);
+                    mContext.finish();
                 }
 
-
-//                Toast.makeText(mContext,loginBean.toString(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -82,6 +90,12 @@ public class UserLoginPresenter {
 
             }
         });
+
+    }
+
+    public void showTips(LoginBean loginBean){
+        Log.e("+++login" , loginBean.toString());
+        Toast.makeText(mContext,loginBean.getMessage(),Toast.LENGTH_SHORT).show();
 
     }
 

@@ -38,7 +38,7 @@ public class RequestInterceptor implements Interceptor {
 
         if (url.contains("uc/ut/captcha")) {
             sobCaptchaKey = responseHeaders.get(SOB_CAPTCHA_KEY_NAME);
-            Log.e("sobCaptchaKey" , sobCaptchaKey);
+//            Log.e("sobCaptchaKey" , sobCaptchaKey);
         }
 
         return response;

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,7 @@ public class LoginFragment extends Fragment {
 
     final public static String epUsers="体验用户";
 
+    private LoginAccountFragment loginAccountFragment =new LoginAccountFragment();
     //两个选择1.跳转至输入手机号页面
     //   2.跳转至主页面
     @Override
@@ -54,7 +56,7 @@ public class LoginFragment extends Fragment {
                         .addToBackStack(null)//将当前fragment加入到返回栈中
                         //通过FragmentTransaction对象的replace()方法让OtherFragment
                         // 把当前Fragment替换成输入手机号的Fragment，
-                        .replace(R.id.fl_denglu,new LoginAccountFragment())
+                        .replace(R.id.fl_denglu,loginAccountFragment)
                         .commit();
             }
         });
@@ -80,6 +82,13 @@ public class LoginFragment extends Fragment {
                 getActivity().finish();
                 startActivity(intent);
 
+            }
+        });
+
+        view.findViewById(R.id.btn_wechat).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"还没有开放~",Toast.LENGTH_SHORT).show();
             }
         });
 
