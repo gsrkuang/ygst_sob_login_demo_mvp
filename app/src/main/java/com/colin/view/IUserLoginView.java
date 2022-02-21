@@ -12,4 +12,5 @@ public interface IUserLoginView {
     String getUserName();
     String getPassword();
     String getCaptcha();
+
 }

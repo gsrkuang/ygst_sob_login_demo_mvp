@@ -3,11 +3,14 @@ package com.colin.ui.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ public class LoginAccountFragment extends Fragment implements IUserLoginView {
     private EditText mUserName;
     private EditText mPassWord;
     private AppCompatImageView mVerificationImg;
+    private ImageView dl_user_avater;
 
     private TextView title_bar_jump ;
     private TextView title_bar_register ;
@@ -106,11 +110,41 @@ public class LoginAccountFragment extends Fragment implements IUserLoginView {
         mVerificationImg = view.findViewById(R.id.dl_img_verify_code);
         title_bar_jump = view.findViewById(R.id.title_bar_jump);
         title_bar_register = view.findViewById(R.id.title_bar_register);
+        dl_user_avater = view.findViewById(R.id.dl_user_avater);
+
+        mUserName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (i == 10){
+                    userLoginPresenter.setUserAvater(charSequence.toString(),dl_user_avater);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
+
+    private void refreshUserAvater(){
+        Glide.with(getContext())
+                .load(String.format(Constants.api_main))
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(mVerificationImg);
+    }
+
 
     private void refreshCaptcha(){
         Glide.with(getContext())
-                .load(String.format(Constants.SUNNY_BEACH_API_BASE_URL + "uc/ut/captcha?code=%s", System.currentTimeMillis()))
+                .load(String.format(Constants.api_main + "uc/ut/captcha?code=%s", System.currentTimeMillis()))
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(mVerificationImg);
