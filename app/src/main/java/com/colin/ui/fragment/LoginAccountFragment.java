@@ -100,18 +100,7 @@ public class LoginAccountFragment extends Fragment implements IUserLoginView {
             }
         });
 
-    }
-
-    private void initView(View view) {
-        mLogin = view.findViewById(R.id.dl_btn);
-        mVerificationCode = view.findViewById(R.id.dl_verificationCode);
-        mPassWord = view.findViewById(R.id.dl_password);
-        mUserName = view.findViewById(R.id.dl_account);
-        mVerificationImg = view.findViewById(R.id.dl_img_verify_code);
-        title_bar_jump = view.findViewById(R.id.title_bar_jump);
-        title_bar_register = view.findViewById(R.id.title_bar_register);
-        dl_user_avater = view.findViewById(R.id.dl_user_avater);
-
+        //动态监听用户账号输入
         mUserName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -130,6 +119,21 @@ public class LoginAccountFragment extends Fragment implements IUserLoginView {
 
             }
         });
+
+
+    }
+
+    private void initView(View view) {
+        mLogin = view.findViewById(R.id.dl_btn);
+        mVerificationCode = view.findViewById(R.id.dl_verificationCode);
+        mPassWord = view.findViewById(R.id.dl_password);
+        mUserName = view.findViewById(R.id.dl_account);
+        mVerificationImg = view.findViewById(R.id.dl_img_verify_code);
+        title_bar_jump = view.findViewById(R.id.title_bar_jump);
+        title_bar_register = view.findViewById(R.id.title_bar_register);
+        dl_user_avater = view.findViewById(R.id.dl_user_avater);
+
+
 
     }
 
