@@ -21,9 +21,21 @@ import retrofit2.http.Path;
  */
 public interface ServerApi {
 
+    /**
+     * 用户登录接口
+     * @param headerKey
+     * @param userBean
+     * @param captcha
+     * @return
+     */
     @POST("uc/user/login/{captcha}")
     Call<LoginBean> userLogin(@Header ("l_c_i") String headerKey,@Body UserBean userBean, @Path("captcha")String captcha);
 
+    /**
+     * 用户头像获取接口
+     * @param phoneNum
+     * @return
+     */
     @GET("uc/user/avatar/{phoneNum}")
     Call<UserAvaterBean> setUserAvater(@Path("phoneNum")String phoneNum);
 
