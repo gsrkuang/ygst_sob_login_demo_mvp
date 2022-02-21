@@ -62,7 +62,7 @@ public class UserLoginPresenter {
             e.printStackTrace();
         }
         String captcha = userLoginView.getCaptcha();
-        Log.e("+sobCaptchaKey" , RequestInterceptor.sobCaptchaKey);
+//        Log.e("+sobCaptchaKey" , RequestInterceptor.sobCaptchaKey);
 
         Call<LoginBean> call =  serverApi.userLogin(RequestInterceptor.sobCaptchaKey,userBean,captcha);
 
@@ -70,6 +70,15 @@ public class UserLoginPresenter {
             @Override
             public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
                 //Response<LoginBean> responseBody  = call.execute();
+
+                Log.e("+++login" ,  response.headers().toString());
+
+                //登陆成功后，获取sob_token
+                String sob_token = response.headers().get("sob_token");
+
+//                Log.e("+++login++sob_token" , sob_token );
+//                response.headers().
+
                 LoginBean loginBean = response.body();
                 if (loginBean != null || "".equals(loginBean)){
                     showTips(loginBean);
