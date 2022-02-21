@@ -133,15 +133,6 @@ public class LoginAccountFragment extends Fragment implements IUserLoginView {
 
     }
 
-    private void refreshUserAvater(){
-        Glide.with(getContext())
-                .load(String.format(Constants.api_main))
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(mVerificationImg);
-    }
-
-
     private void refreshCaptcha(){
         Glide.with(getContext())
                 .load(String.format(Constants.api_main + "uc/ut/captcha?code=%s", System.currentTimeMillis()))
