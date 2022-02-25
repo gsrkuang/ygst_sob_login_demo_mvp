@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ygst</string>
+    <string name="app_name">ygst_login_mvp</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">账号或手机号</string>
     <string name="prompt_vcode">验证码</string>

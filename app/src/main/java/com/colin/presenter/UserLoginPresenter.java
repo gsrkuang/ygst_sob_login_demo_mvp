@@ -82,7 +82,7 @@ public class UserLoginPresenter {
 //                response.headers().
 
                 LoginBean loginBean = response.body();
-                if (loginBean != null || "".equals(loginBean)) {
+                if (loginBean != null || !"".equals(loginBean)) {
                     showTips(loginBean);
                 }
                 if (loginBean.isSuccess()) {
