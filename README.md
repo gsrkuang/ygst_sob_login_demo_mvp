@@ -1,7 +1,7 @@
 # ygst_sob_login_demo_mvp 项目介绍（MVP 框架）
 -------------------------------
 
-这是没有使用MVP框架的版本，想简单点的可以直接去这里 https://github.com/gsrkuang/ygst_sob_login_demo
+这是没有使用MVP框架简单的MVC的版本，想简单点的可以直接去这里 https://github.com/gsrkuang/ygst_sob_login_demo
 
 使用MVVM（java）框架的版本，去这里 https://github.com/gsrkuang/ygst_sob_login_demo_mvvm
 
